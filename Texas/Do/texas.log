@@ -1,0 +1,271 @@
+
+. 
+. 
+. * ssc install synth, replace
+. 
+. * Estimation 1: Texas model of black male prisoners (per capita)
+. use ../data/texas.dta, replace
+
+. 
+. 
+. 
+. #delimit;
+delimiter now ;
+. synth   bmprison 
+>                 perc1519(1990)
+>                 ,               
+>                 trunit(48) trperiod(1993) unitnames(state) 
+>                 mspeperiod(1985(1)1993) resultsperiod(1985(1)2000)
+>                 keep(../data/synth/synth_bmprate.dta) replace fig;
+--------------------------------------------------------------------------------------------------------------------------------
+Synthetic Control Method for Comparative Case Studies
+--------------------------------------------------------------------------------------------------------------------------------
+
+First Step: Data Setup
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Data Setup successful
+--------------------------------------------------------------------------------------------------------------------------------
+                Treated Unit: Texas
+               Control Units: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, District of
+                              Columbia, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,
+                              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska,
+                              Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio,
+                              Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Utah,
+                              Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming
+--------------------------------------------------------------------------------------------------------------------------------
+          Dependent Variable: bmprison
+  MSPE minimized for periods: 1985 1986 1987 1988 1989 1990 1991 1992 1993
+Results obtained for periods: 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000
+--------------------------------------------------------------------------------------------------------------------------------
+                  Predictors: perc1519(1990)
+--------------------------------------------------------------------------------------------------------------------------------
+Unless period is specified
+predictors are averaged over: 1985 1986 1987 1988 1989 1990 1991 1992
+--------------------------------------------------------------------------------------------------------------------------------
+
+Second Step: Run Optimization
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Optimization done
+--------------------------------------------------------------------------------------------------------------------------------
+
+Third Step: Obtain Results
+--------------------------------------------------------------------------------------------------------------------------------
+Loss: Root Mean Squared Prediction Error
+
+---------------------
+   RMSPE |  16952.17 
+---------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Unit Weights:
+
+----------------------------------
+               Co_No | Unit_Weight
+---------------------+------------
+             Alabama |        .022
+              Alaska |        .012
+             Arizona |        .015
+            Arkansas |        .019
+          California |        .013
+            Colorado |        .012
+         Connecticut |        .009
+            Delaware |        .013
+District of Columbia |        .011
+             Florida |        .008
+             Georgia |        .019
+              Hawaii |         .01
+               Idaho |        .023
+            Illinois |        .015
+             Indiana |        .019
+                Iowa |        .015
+              Kansas |        .013
+            Kentucky |         .02
+           Louisiana |        .021
+               Maine |        .015
+            Maryland |         .01
+       Massachusetts |        .012
+            Michigan |        .018
+           Minnesota |        .012
+         Mississippi |        .026
+            Missouri |        .014
+             Montana |        .015
+            Nebraska |        .015
+              Nevada |        .008
+       New Hampshire |        .012
+          New Jersey |         .01
+          New Mexico |        .018
+            New York |        .012
+      North Carolina |        .018
+        North Dakota |        .016
+                Ohio |        .016
+            Oklahoma |        .017
+              Oregon |        .011
+        Pennsylvania |        .012
+        Rhode Island |        .014
+      South Carolina |        .022
+        South Dakota |        .016
+           Tennessee |        .018
+                Utah |        .257
+             Vermont |        .017
+            Virginia |        .014
+          Washington |        .011
+       West Virginia |        .022
+           Wisconsin |        .014
+             Wyoming |         .02
+----------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Predictor Balance:
+
+------------------------------------------------------
+                               |   Treated  Synthetic 
+-------------------------------+----------------------
+                perc1519(1990) |  7.703001   7.709481 
+------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+.                 mat list e(V_matrix);
+
+symmetric e(V_matrix)[1,1]
+           perc1519(
+               1990)
+perc1519(
+    1990)          1
+
+. #delimit cr
+delimiter now cr
+. 
+. 
+end of do-file
+
+. do "/Users/scott_cunningham/Dropbox/CI Workshop/Texas/Do/.tm-stata-14476.do"
+
+. use ../data/synth/placebo_bmprate.dta, replace
+
+. 
+. 
+end of do-file
+
+. list in 1
+
+     +-------------------------------------------------------------------------------------------------------------------------+
+  1. | treat48 | counte~48 | year |    gap48 | treat1 | count~t1 |    gap1 | treat2 | count~t2 |     gap2 | treat4 | count~t4  |
+     |   14828 | 13073.971 | 1985 | 1754.029 |   6227 | 5623.495 | 603.505 |    198 |  383.761 | -185.761 |   1297 |  1412.69  |
+     |---------+---------------------------------------------------------------------------------------------------+-----------|
+     |    gap4 | treat5 | count~t5 |     gap5 | treat6 | count~t6 |  gap6 | treat8 | count~t8 |     gap8 | treat9  | count~t9  |
+     | -115.69 |   2153 | 2574.774 | -421.774 |  16138 |  15545.6 | 592.4 |    665 | 1098.236 | -433.236 |   2620  | 2880.374  |
+     |---------------------------------------------------------------------------------------------------+---------------------|
+     |     gap9 | treat10 | count~10  |    gap10  | treat11  | count~11  | gap11  | treat12  | count~12  |   gap12  | treat13  |
+     | -260.374 |    1356 | 1611.576  | -255.576  |    6021  |     4156  |  1865  |   13427  | 14350.85  | -923.85  |    9043  |
+     |----------+-----------------------------------------------------------------+---------------------------------+----------|
+     | count~13 |    gap13 | treat15 | count~15 |    gap15 | treat16  | count~16  |  gap16  | treat17  | counte~17  |   gap17  |
+     | 9232.147 | -189.147 |      98 |  563.802 | -465.802 |      31  |   12.165  | 18.835  |   10721  | 10036.355  | 684.645  |
+     |-----------------------------------------------------+--------------------------------+----------------------------------|
+     | treat18 | count~18 |   gap18 | treat20  | count~20  |  gap20  | treat21  | count~21  |    gap21  | treat22  | count~22  |
+     |    3249 | 2855.151 | 393.849 |    1556  | 1559.989  | -3.989  |    1520  | 1621.168  | -101.168  |    9562  | 7743.003  |
+     |--------------------+--------------------+-------------------------------------------------------------------------------|
+     |    gap22 | treat23 | count~23 |   gap23 | treat24  | count~24  |    gap24  | treat25  | count~25  |   gap25  | treat26  |
+     | 1818.997 |      15 |   37.891 | -22.891 |    9093  | 7731.965  | 1361.035  |    1740  | 1601.003  | 138.997  |    9497  |
+     |----------------------------------------------------+----------------------------------+----------------------+----------|
+     | counte~26 |    gap26 | treat27 | count~27 |  gap27 | treat28  | count~28  |    gap28  | treat29  | count~29  |   gap29  |
+     | 10322.278 | -825.278 |     480 |   554.26 | -74.26 |    4156  | 4706.536  | -550.536  |    3766  |  3986.12  | -220.12  |
+     |-------------------------------------------------------------------------------------------------------------------------|
+     | treat30 | count~30 |  gap30 | treat31 | count~31 |  gap31 | treat32 | count~32 |   gap32 | treat33 | count~33 |   gap33 |
+     |      16 |   19.349 | -3.349 |     524 |  475.635 | 48.365 |    1123 |  968.648 | 154.352 |      11 |   38.596 | -27.596 |
+     |---------+----------+----------------------------------------------------------------------------------------------------|
+     | treat34 | count~34 |    gap34 | treat35 | count~35 |   gap35 | treat36  | counte~36  |    gap36  | treat37  | count~37  |
+     |    7238 | 7398.624 | -160.624 |     230 |  252.143 | -22.143 |   16958  | 13753.266  | 3204.734  |    8930  |  6487.02  |
+     |---------+-------------------------------+----------+---------------------------------+-----------+----------------------|
+     |   gap37 | treat38 | count~38 |   gap38  | treat39  | count~39  |   gap39  | treat40  | count~40  |    gap40  | treat41  |
+     | 2442.98 |       4 |   23.364 | -19.364  |    8904  | 8695.812  | 208.188  |    2271  | 2570.727  | -299.727  |     462  |
+     |------------------------------+----------+-------------------------------------------------------------------------------|
+     | count~41 |   gap41 | treat42 | count~42 |   gap42 | treat45 | count~45 |   gap45 | treat46 | count~46 | gap46 | treat47 |
+     |  498.218 | -36.218 |    7731 | 6860.876 | 870.124 |    6032 |   7128.4 | -1096.4 |      21 |   16.736 | 4.264 |    3045 |
+     |----------+---------+---------+----------+---------------------------------------------------------------------+---------|
+     | count~47 |   gap47 | treat49 | count~49 | gap49 | treat51 | count~51 |   gap51 | treat53 | count~53 |   gap53 | treat55 |
+     | 2746.742 | 298.258 |     142 |  134.788 | 7.212 |    6825 | 6507.344 | 317.656 |    1218 |  876.064 | 341.936 |    1954 |
+     |-------------------------------------------------------------------------------------------------------------------------|
+     |                          count~55                          |                            gap55                           |
+     |                          1967.015                          |                          -13.015                           |
+     +-------------------------------------------------------------------------------------------------------------------------+
+
+. do "/Users/scott_cunningham/Dropbox/CI Workshop/Texas/Do/.tm-stata-14496.do"
+
+. * Picture of the full sample, including outlier RSMPE
+. #delimit;       
+delimiter now ;
+. twoway 
+> (line gap1 year ,lp(solid)lw(vthin)) 
+> (line gap2 year ,lp(solid)lw(vthin)) 
+> (line gap4 year ,lp(solid)lw(vthin)) 
+> (line gap5 year ,lp(solid)lw(vthin))
+> (line gap6 year ,lp(solid)lw(vthin)) 
+> (line gap8 year ,lp(solid)lw(vthin)) 
+> (line gap9 year ,lp(solid)lw(vthin)) 
+> (line gap10 year ,lp(solid)lw(vthin)) 
+> (line gap11 year ,lp(solid)lw(vthin)) 
+> (line gap12 year ,lp(solid)lw(vthin)) 
+> (line gap13 year ,lp(solid)lw(vthin)) 
+> (line gap15 year ,lp(solid)lw(vthin)) 
+> (line gap16 year ,lp(solid)lw(vthin)) 
+> (line gap17 year ,lp(solid)lw(vthin))
+> (line gap18 year ,lp(solid)lw(vthin)) 
+> (line gap20 year ,lp(solid)lw(vthin)) 
+> (line gap21 year ,lp(solid)lw(vthin)) 
+> (line gap22 year ,lp(solid)lw(vthin)) 
+> (line gap23 year ,lp(solid)lw(vthin)) 
+> (line gap24 year ,lp(solid)lw(vthin)) 
+> (line gap25 year ,lp(solid)lw(vthin)) 
+> (line gap26 year ,lp(solid)lw(vthin))
+> (line gap27 year ,lp(solid)lw(vthin))
+> (line gap28 year ,lp(solid)lw(vthin)) 
+> (line gap29 year ,lp(solid)lw(vthin)) 
+> (line gap30 year ,lp(solid)lw(vthin)) 
+> (line gap31 year ,lp(solid)lw(vthin)) 
+> (line gap32 year ,lp(solid)lw(vthin)) 
+> (line gap33 year ,lp(solid)lw(vthin)) 
+> (line gap34 year ,lp(solid)lw(vthin))
+> (line gap35 year ,lp(solid)lw(vthin))
+> (line gap36 year ,lp(solid)lw(vthin))
+> (line gap37 year ,lp(solid)lw(vthin)) 
+> (line gap38 year ,lp(solid)lw(vthin)) 
+> (line gap39 year ,lp(solid)lw(vthin))
+> (line gap40 year ,lp(solid)lw(vthin)) 
+> (line gap41 year ,lp(solid)lw(vthin)) 
+> (line gap42 year ,lp(solid)lw(vthin)) 
+> (line gap45 year ,lp(solid)lw(vthin)) 
+> (line gap46 year ,lp(solid)lw(vthin)) 
+> (line gap47 year ,lp(solid)lw(vthin))
+> (line gap49 year ,lp(solid)lw(vthin)) 
+> (line gap51 year ,lp(solid)lw(vthin)) 
+> (line gap53 year ,lp(solid)lw(vthin)) 
+> (line gap55 year ,lp(solid)lw(vthin)) 
+> (line gap48 year ,lp(solid)lw(thick)lcolor(black)), /*treatment unit, Texas*/
+> yline(0, lpattern(shortdash) lcolor(black)) xline(1993, lpattern(shortdash) lcolor(black))
+> xtitle("",si(small)) xlabel(#10) ytitle("Gap in black male prisoners per capita prediction error", size(small))
+>         legend(off);
+
+. #delimit cr
+delimiter now cr
+. 
+. 
+end of do-file
+
+. do "/Users/scott_cunningham/Dropbox/CI Workshop/Texas/Do/.tm-stata-14517.do"
+
+.         import excel ../inference/rmspe_bmprate.xls, sheet("Sheet1") firstrow clear
+(6 vars, 46 obs)
+
+.         histogram ratio, bin(20) frequency fcolor(gs13) lcolor(black) ylabel(0(2)12) xtitle(Post/pre RMSPE ratio) xlabel(0(1)2
+> 5)
+(bin=20, start=.84858584, width=.90886494)
+
+. 
+. 
+end of do-file
+
+. do "/Users/scott_cunningham/Downloads/.tm-stata-28865.do"
+
+. clear
+
+. capture log close
