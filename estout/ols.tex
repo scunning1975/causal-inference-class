@@ -1,0 +1,102 @@
+%---------------------------------------------------------------
+%
+% Last updated: May 27, 2020
+%
+%---------------------------------------------------------------
+\documentclass[12pt,letterpaper]{article}
+%\usepackage[longnamesfirst]{natbib}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{cancel}
+%\usepackage{appendix}
+%\usepackage[toc,page]{appendix}
+\usepackage{amsfonts,mathtools,amsmath}
+\usepackage{setspace}
+\usepackage{threeparttable}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{natbib}
+\usepackage{longtable,lscape}
+\usepackage{amssymb}
+\usepackage{graphicx} 
+%\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{float}
+\usepackage[center]{caption}
+\usepackage{subfigure}
+\usepackage{plain}
+%\usepackage{afterpage}
+%\bibliographystyle{apsr}
+\usepackage{theorem}
+\usepackage{multirow,dcolumn,booktabs}
+\usepackage{sectsty}
+\usepackage{url}
+\usepackage{chngcntr}
+%\usepackage[capposition=top]{floatrow}
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+\makeatletter
+\renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
+\renewcommand\thesubsubsection{\thesubsection.\@arabic\c@subsubsection}
+\makeatother
+
+\setlength{\textwidth}{16cm} \setlength{\textheight}{22.8cm}
+\addtolength{\oddsidemargin}{-13mm} \addtolength{\topmargin}{-10mm}
+\setlength{\topmargin}{-.5in}
+    \linespread{1.5}
+
+\renewcommand{\labelenumii}{\arabic{enumi}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\DeclareMathOperator*{\rk}{rk}
+\DeclareMathOperator*{\Card}{Card}
+\DeclareMathOperator*{\Prob}{Prob}
+\DeclareMathOperator*{\cov}{cov}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator{\Var}{Var\,}
+\DeclareMathOperator{\Post}{Post}
+\DeclareMathOperator{\Pre}{Pre}
+\DeclareMathOperator{\post}{post}
+\DeclareMathOperator{\pre}{pre}
+\DeclareMathOperator{\Mid}{Mid}
+\DeclareMathOperator{\MID}{MID}
+
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{./graphics/}}
+\usepackage[all]{nowidow}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{soul}
+
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{threeparttable}
+\newcommand{\tabnote}[1]{\vskip5pt{\justifying\noindent\small {\emph{Note:~}#1\par}}}
+\usepackage{epigraph}
+\usepackage{fullwidth}
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize}
+
+% Coding stuff
+\usepackage{placeins}
+\newcommand{\codeexample}[2]{
+	\begin{fullwidth}[width=\textwidth]
+		\VerbatimInput[framesep=3mm,
+			frame=lines, %line above and below code section
+			numbers=left, %Line number
+			label= #1, %name of code section
+			baselinestretch=0.75 %Use line space more similar to line space in code editors
+		]{#2} %Write the relative file path and the name of the file  to be included
+	\end{fullwidth}
+	\FloatBarrier
+}
+
+
+\begin{document}
+
+\input{education.tex}
+
+\end{document}
