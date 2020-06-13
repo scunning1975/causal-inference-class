@@ -2,9 +2,9 @@ use https://github.com/scunning1975/mixtape/raw/master/judge_fe.dta, clear
  
 global judge_pre judge_pre_1 judge_pre_2 judge_pre_3 judge_pre_4 judge_pre_5 judge_pre_6 judge_pre_7 judge_pre_8
 global demo black age male white 
-global off  	fel mis sum F1 F2 F3 F M1 M2 M3 M 
+global off  fel mis sum F1 F2 F3 F M1 M2 M3 M 
 global prior priorCases priorWI5 prior_felChar  prior_guilt onePrior threePriors
-global control2 	day day2 day3  bailDate t1 t2 t3 t4 t5 t6
+global control2 day day2 day3 bailDate t1 t2 t3 t4 t5 t6
 
 
 * Naive OLS
