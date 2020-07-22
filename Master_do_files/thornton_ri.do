@@ -57,7 +57,7 @@ forvalues i = 2/1000 {
 tempfile final
 save "`final'", replace
 
-* Calculate exact p-value
+* Calculate approximate p-value
 gsort -ate
 gen rank = _n
 su rank if iteration==1

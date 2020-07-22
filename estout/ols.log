@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  9 JUN 2020 19:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  20 JUL 2020 09:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -622,7 +622,7 @@ aux) )
 Here is how much of TeX's memory you used:
  7188 strings out of 493014
  107251 string characters out of 6133351
- 178837 words of memory out of 5000000
+ 177837 words of memory out of 5000000
  10544 multiletter control sequences out of 15000+600000
  9852 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -632,7 +632,7 @@ Here is how much of TeX's memory you used:
 fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-Output written on ols.pdf (1 page, 61048 bytes).
+Output written on ols.pdf (1 page, 60950 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  19 compressed objects within 1 object stream
