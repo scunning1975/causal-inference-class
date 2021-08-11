@@ -43,7 +43,7 @@ ssc install cmogram
 cmogram score lagdemvoteshare, cut(0.5) scatter line(0.5) qfitci
 cmogram score lagdemvoteshare, cut(0.5) scatter line(0.5) lfit
 
-* Note kernel-weighted local polynomial regression is a smoothing method.
+* Note kernel-weighted local regression is a smoothing method.
 lpoly score lagdemvoteshare if lagdemocrat == 0, nograph kernel(triangle) gen(x0 sdem0) bwidth(0.1)
 lpoly score lagdemvoteshare if lagdemocrat == 1, nograph kernel(triangle) gen(x1 sdem1)  bwidth(0.1)
 scatter sdem1 x1, color(red) msize(small) || scatter sdem0 x0, msize(small) ///
