@@ -14,7 +14,7 @@ use https://github.com/scunning1975/mixtape/raw/master/card.dta, clear
 				cap n tempvar tempsample
 				cap n local specname=`specname'+1
 				* Column 1: OLS
-				reg  lwage  educ  exper black south married   smsa 
+				reg  lwage  educ  exper black south married   smsa , robust
 				cap n estadd ysumm
 				cap n estimates store ols_`specname'
 
