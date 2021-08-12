@@ -19,6 +19,11 @@ gen bac_squared = bac1^2
 * Start with a real quick density test from rddensity
 rddensity bac1, c(0.08) plot
 
+* 
+twoway (histogram bac1 if bac1 >= 0.03 & bac1 < 0.08, freq color(blue)) (histogram bac1 if bac1 >= 0.08 & bac1 <= 0.13, freq color(red)), xlabel(0.03(0.01)0.13) graphregion(color(white)) xtitle(bac1) ytitle(Number of Observations) legend(off)
+
+
+
 * I need to go back and look more closely at this heaping, bc visually I can see
 * regularly spaced spikes in the density at certain intervals, but I'm not yet
 * sure where those are. I'm going to maybe want to think about a donut hole
