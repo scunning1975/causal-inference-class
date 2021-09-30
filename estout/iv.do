@@ -14,13 +14,13 @@ use https://github.com/scunning1975/mixtape/raw/master/card.dta, clear
 				cap n tempvar tempsample
 				cap n local specname=`specname'+1
 				* Column 1: OLS
-				reg  lwage  educ  exper black south married   smsa 
+				reg  lwage  educ  exper black south married   smsa , robust
 				cap n estadd ysumm
 				cap n estimates store ols_`specname'
 
 				cap n local specname=`specname'+1
 				* Column 2 (bottom): First stage coefficient, standard error and F statistics on the first stage instrument.
-				reg educ nearc4 exper black south married   smsa 
+				reg educ nearc4 exper black south married   smsa , robust
 				cap n local biv = _b[nearc4]
 				cap n local seiv = _se[nearc4]
 				cap n unab ivs: nearc4
@@ -32,7 +32,7 @@ use https://github.com/scunning1975/mixtape/raw/master/card.dta, clear
 				cap n local specname=`specname'+1
 
 				* Column 2 (top): 2sls estimate
-				cap n ivregress 2sls lwage (educ=nearc4) exper black south married   smsa, first
+				cap n ivregress 2sls lwage (educ=nearc4) exper black south married   smsa, first robust
 				cap n estadd ysumm
 				cap n estadd scalar biv  = `biv'
 				cap n estadd scalar seiv = `seiv'
@@ -66,7 +66,7 @@ use https://github.com/scunning1975/mixtape/raw/master/card.dta, clear
 "\multicolumn{1}{c}{2SLS}\\")
 		posthead("\midrule")
 		prefoot("\\" "\midrule" "\multicolumn{1}{c}{First Stage Instrument}\\")  
-		postfoot("\bottomrule" "\end{tabular}" "\begin{tablenotes}" "\tiny" "\item Standard errors in parenthesis. * p$<$0.10, ** p$<$0.05, *** p$<$0.01" "\end{tablenotes}" \end{threeparttable} \end{center} \end{table});
+		postfoot("\bottomrule" "\end{tabular}" "\begin{tablenotes}" "\tiny" "\item Robust standard errors in parenthesis. * p$<$0.10, ** p$<$0.05, *** p$<$0.01" "\end{tablenotes}" \end{threeparttable} \end{center} \end{table});
 #delimit cr
 	cap n estimates clear
 	
