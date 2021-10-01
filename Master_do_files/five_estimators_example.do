@@ -11,6 +11,14 @@
 		- eventstudyinteract (San and Abraham 2020): available on SSC
 		- csdid (Callaway and Sant'Anna 2020) v1.5: available on SSC
 
+ssc install did_imputation, replace
+ssc install did_multiplegt, replace
+ssc install eventstudyinteract, replace
+ssc install reghdfe, replace
+ssc install event_plot, replace
+ssc install ftools, replace
+ssc install drdid, replace
+
 */
 
 // Generate a complete panel of 300 units observed in 15 periods
