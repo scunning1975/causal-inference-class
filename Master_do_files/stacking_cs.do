@@ -1,5 +1,5 @@
 *******************************************************
-* name: stacking_cs.do
+* name: stacking_castle.do
 * author: scott cunningham (baylor) 
 * description: Stacked regression example with castle
 * last updated: October 8, 2021
@@ -8,7 +8,7 @@
 capture log close
 clear
 
-cd "/Users/scott_cunningham/git/causal-inference-class/Master_do_files"
+cd "/Users/scott_cunningham/git/CodeChella_DiD/Programs/Stata"
 use https://github.com/scunning1975/mixtape/raw/master/castle.dta, clear
 
 * effyear is the treatment variable. I need to loop through each value
