@@ -3,6 +3,10 @@
 
 * Load the raw data into memory
 use https://github.com/scunning1975/mixtape/raw/master/lmb-data.dta, clear
+net install rdrobust, from(https://raw.githubusercontent.com/rdpackages/rdrobust/master/stata) replace
+ssc install rdrobust
+ net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
+ net install lpdensity, from(https://sites.google.com/site/nppackages/lpdensity/stata) replace
 
 * Replicating Table 1 of Lee, Moretti and Butler (2004)
 reg score lagdemocrat    if lagdemvoteshare>.48 & lagdemvoteshare<.52, cluster(id)
@@ -50,19 +54,23 @@ scatter sdem1 x1, color(red) msize(small) || scatter sdem0 x0, msize(small) ///
 color(red) xline(0.5,lstyle(dot)) legend(off) xtitle("Democratic vote share") ytitle("ADA score")
 
 * Local polynomial point estimators with bias correction
-ssc install rdrobust
-rdrobust score lagdemvoteshare, c(0.5)
+rdrobust score lagdemvoteshare, masspoints(off) p(1) c(0.5)
+rdrobust score lagdemvoteshare, kernel(uniform) masspoints(off) p(2) c(0.5)
+rdrobust score lagdemvoteshare, kernel(triangular) masspoints(off) p(2) c(0.5)
+rdrobust score lagdemvoteshare, kernel(epanechnikov) masspoints(off) p(2) c(0.5)
+rdrobust score lagdemvoteshare, masspoints(off) p(2) c(0.5)
+rdrobust score lagdemvoteshare, masspoints(off) p(3) c(0.5)
+rdrobust score lagdemvoteshare, masspoints(off) p(4) c(0.5)
 
-* Data-drive RD plots
-rdplot score lagdemvoteshare, p(1) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
-rdplot score lagdemvoteshare, p(2) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
-rdplot score lagdemvoteshare, p(3) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
-rdplot score lagdemvoteshare, p(4) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+* Data-driven RDD plots
+rdplot score lagdemvoteshare, p(1) masspoints(off) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(2) masspoints(off) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(3) masspoints(off) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(4) masspoints(off) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
 
-* McCrary density test
- net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
- net install lpdensity, from(https://sites.google.com/site/nppackages/lpdensity/stata) replace
-rddensity demvoteshare, c(0.5) plot
+* McCrary density test: remember it's a density test *on the running variable* (lagdemvoteshare)
+rddensity lagdemvoteshare, c(0.5) plot
 
-* Original McCrary density test
+* Original McCrary density test: outdated, don't use it, but it's Justin McCrary's original 
+* density test from that old Journal of Econometrics from 2008.
 DCdensity demvoteshare_c if (demvoteshare_c>-0.5 & demvoteshare_c<0.5), breakpoint(0) generate(Xj Yj r0 fhat se_fhat)
