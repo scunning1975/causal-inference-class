@@ -40,8 +40,8 @@ xi: reg democrat lagdemocrat##c.(demvoteshare_c demvoteshare_sq) if lagdemvotesh
 
 * Nonparametric histograms using cmogram
 ssc install cmogram
-cmogram score lagdemvoteshare, cut(0.5) scatter line(0.5) qfitci
 cmogram score lagdemvoteshare, cut(0.5) scatter line(0.5) lfit
+cmogram score lagdemvoteshare, cut(0.5) scatter line(0.5) qfitci
 
 * Note kernel-weighted local regression is a smoothing method.
 lpoly score lagdemvoteshare if lagdemocrat == 0, nograph kernel(triangle) gen(x0 sdem0) bwidth(0.1)
@@ -52,6 +52,12 @@ color(red) xline(0.5,lstyle(dot)) legend(off) xtitle("Democratic vote share") yt
 * Local polynomial point estimators with bias correction
 ssc install rdrobust
 rdrobust score lagdemvoteshare, c(0.5)
+
+* Data-drive RD plots
+rdplot score lagdemvoteshare, p(1) c(0.5) graph_options(title(RD Plot))
+rdplot score lagdemvoteshare, p(2) c(0.5) graph_options(title(RD Plot))
+rdplot score lagdemvoteshare, p(3) c(0.5) graph_options(title(RD Plot))
+rdplot score lagdemvoteshare, p(4) c(0.5) graph_options(title(RD Plot))
 
 * McCrary density test
  net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
