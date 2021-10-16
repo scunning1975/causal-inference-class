@@ -63,4 +63,6 @@ rdplot score lagdemvoteshare, p(4) c(0.5) graph_options(title(RD Plot for ADA Sc
  net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
  net install lpdensity, from(https://sites.google.com/site/nppackages/lpdensity/stata) replace
 rddensity demvoteshare, c(0.5) plot
+
+* Original McCrary density test
 DCdensity demvoteshare_c if (demvoteshare_c>-0.5 & demvoteshare_c<0.5), breakpoint(0) generate(Xj Yj r0 fhat se_fhat)
