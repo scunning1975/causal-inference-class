@@ -54,10 +54,10 @@ ssc install rdrobust
 rdrobust score lagdemvoteshare, c(0.5)
 
 * Data-drive RD plots
-rdplot score lagdemvoteshare, p(1) c(0.5) graph_options(title(RD Plot))
-rdplot score lagdemvoteshare, p(2) c(0.5) graph_options(title(RD Plot))
-rdplot score lagdemvoteshare, p(3) c(0.5) graph_options(title(RD Plot))
-rdplot score lagdemvoteshare, p(4) c(0.5) graph_options(title(RD Plot))
+rdplot score lagdemvoteshare, p(1) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(2) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(3) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
+rdplot score lagdemvoteshare, p(4) c(0.5) graph_options(title(RD Plot for ADA Score and Voteshare))
 
 * McCrary density test
  net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
