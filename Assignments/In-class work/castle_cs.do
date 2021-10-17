@@ -49,14 +49,7 @@ c.	Using the never-treated, what is the group ATT by treatment date?
 */
 
 csdid l_homicide, ivar(sid) time(year) gvar(effyear)  method(dripw) 
-
-estat event, estore(cs) // this produces and stores the estimates at the same time
-event_plot cs, default_look graph_opt(xtitle("Periods since the event") ytitle("Average causal effect") xlabel(-5(1)5) ///
-	title("Callaway and Sant'Anna (2020)")) stub_lag(T+#) stub_lead(T-#) together
-
-
 // Estimation with cldid of Callaway and Sant'Anna (2020)
-csdid Y, ivar(i) time(t) gvar(gvar) notyet
 estat event, estore(cs) // this produces and stores the estimates at the same time
 event_plot cs, default_look graph_opt(xtitle("Periods since the event") ytitle("Average causal effect") xlabel(-14(1)5) ///
 	title("Callaway and Sant'Anna (2020)")) stub_lag(T+#) stub_lead(T-#) together
