@@ -26,6 +26,7 @@ ta effyear count
 4.	Recreate figure 9.12 from the Mixtape comparing Florida to all "never treated" states. What appears to happen in Florida with respect to homicide rates relative to the rest of the US?
 */
 
+/*
 preserve
 gen 	usa = 1 if effyear==0
 replace usa = 0 if effyear==2005
@@ -39,6 +40,8 @@ tsset usa year
 gen log_rate = ln(rate)
 twoway (tsline log_rate if usa==0) (tsline log_rate if usa==1), tline(2005) title(Log homicides) subtitle(Florida vs USA) legend(order(1 "Florida" 2 "USA (excluding Florida)"))
 restore
+*/
+
 
 /*
 6.	Estimate the effect of castle doctrine reform using CS.
