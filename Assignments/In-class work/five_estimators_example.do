@@ -53,7 +53,7 @@ estimates store bjs // storing the estimates for later
 
 // Estimation with did_multiplegt of de Chaisemartin and D'Haultfoeuille (2020)
 did_multiplegt Y i t D, robust_dynamic dynamic(5) placebo(5) breps(100) cluster(i) 
-event_plot e(estimates) #e(variances), default_look graph_opt(xtitle("Periods since the event") ytitle("Average causal effect") ///
+event_plot e(estimates)#e(variances), default_look graph_opt(xtitle("Periods since the event") ytitle("Average causal effect") ///
 	title("de Chaisemartin and D'Haultfoeuille (2020)") xlabel(-5(1)5)) stub_lag(Effect_#) stub_lead(Placebo_#) together
 
 matrix dcdh_b = e(estimates) // storing the estimates for later
