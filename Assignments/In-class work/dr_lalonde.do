@@ -43,6 +43,8 @@ su pscore if treat==0, detail
 * Now look at the propensity score distribution for treatment and control groups
 * histogram pscore, by(treat)
 
+keep if pscore>=0.1 & pscore<=0.9
+
 /*
 2.	Rearrange the data as a panel from 1975 to 1978 (you will need to reshape in Stata).
 a.	Compare your results if using DR, OR or IPW. 
