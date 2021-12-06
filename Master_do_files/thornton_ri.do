@@ -33,7 +33,7 @@ drop random*
 sort one
 
 gen 	any = 0 // create a new one based on randomization
-replace any = 1 in 1/2222
+replace any = 1 in 1/2016
 
 * Calculate test statistic using absolute value of SDO
 egen 	te1 = mean(got) if any==1

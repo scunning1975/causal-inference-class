@@ -4,7 +4,7 @@
 * Load the raw data into memory
 use https://github.com/scunning1975/mixtape/raw/master/lmb-data.dta, clear
 net install rdrobust, from(https://raw.githubusercontent.com/rdpackages/rdrobust/master/stata) replace
-ssc install rdrobust
+ssc install rdrobust, replace
  net install rddensity, from(https://raw.githubusercontent.com/rdpackages/rddensity/master/stata) replace
  net install lpdensity, from(https://sites.google.com/site/nppackages/lpdensity/stata) replace
 
