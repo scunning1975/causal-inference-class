@@ -92,12 +92,11 @@ replace te = te4 if group == 4
 * Cumulative treatment effect is te x (year - t_g + 1) -- Dynamic treatment effects over time for each group.
 * How does (year - treat_date + 1) create dynamic ATT?  Assume treat_date is 1992 and it is year 2000. Then, te=8 x (2000 - 1992 + 1) = 8 x (9) = 72. Group 2's TE rises from an 8 up to 72 in the t+8 year.
 
-* Data generating process with heterogeneity over time
-gen y = firms + n + treat*te*(year - treat_date + 1) + e 
+* 1. Outcome with constant treatment effects.  Notice, the treatment effect is constant. 
+gen y2 = firms + n + te*treat + e // parallel trends is imposed bc everyone grows by n and e without treatment
 
-* Constant treatment effects.  Notice, the treatment effect is constant. 
-gen y2 = firms + n + te*treat + e 
-
+* 2. Outcome with data generating process with heterogeneity over time
+gen y = firms + n + treat*te*(year - treat_date + 1) + e // parallel trends ALSO holds here. But treatment effects are dynamic because they grow the longer time passes. 
 
 * Leads and lags
 gen     time_til=year-treat_date
